@@ -3,6 +3,12 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FloatingShapes } from "@/components/FloatingShapes";
+import Header from "@/components/header";
+import {ConvexClientProvider} from "./ConvexClientProvider"
+import { ClerkProvider } from '@clerk/nextjs'
+import { shadesOfPurple } from "@clerk/themes";
+
+
 
 export const metadata = {
   title: "VarPlex",
@@ -12,25 +18,36 @@ export const metadata = {
 const inter = Inter({subsets : ["latin"]});
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className}`}
-      >
+      <head>
+        <link rel="icon" href="/logo.png" sizes="any"></link>
+      </head>
+      <body className={`${inter.className}`}>
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {/* {header} */}
+            <ClerkProvider
+            appearance={{
+              baseTheme: shadesOfPurple,
+            }}
+            >
+            <ConvexClientProvider>
+            <Header/>
             <main className="bg-slate-900 min-h-screen text-white overflow-x-hidden">
               <FloatingShapes />
               <Toaster richColors />
               {children}
             </main>
+            </ConvexClientProvider>
+            </ClerkProvider>
             
           </ThemeProvider>
       </body>
     </html>
+    
   );
 }
