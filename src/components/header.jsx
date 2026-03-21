@@ -3,10 +3,11 @@ import React from 'react'
 import  Link  from "next/link";
 import Image from 'next/image';
 import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
+import {  SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import { Button } from './ui/button';
 import { useStoreUser } from '@/hooks/use-store-user';
 import { BarLoader } from "react-spinners";
+import { Authenticated, Unauthenticated } from 'convex/react';
 
 const Header = () => {
 
@@ -64,16 +65,16 @@ const Header = () => {
 
 
         <div className="flex items-center gap-3 ml-10 md:ml-20">
-           <SignedOut>
+           <Unauthenticated>
                 <SignInButton>
                     <Button variant="glass"  >Sign In</Button>
                 </SignInButton>
                 <SignUpButton>
                   <Button variant="primary">Get Started</Button>
                 </SignUpButton>
-              </SignedOut>
+              </Unauthenticated>
               {/* Show the user button when the user is signed in */}
-              <SignedIn>
+              <Authenticated>
                 <UserButton
                 appearance={{
                 elements: {
@@ -87,21 +88,24 @@ const Header = () => {
             //   may cause problem
             //   callbackUrl = '/'
                 />
-              </SignedIn>
-        </div>
-
+              </Authenticated>
         </div>
 
         
+
+        </div>
+
         {
           isLoading && (
-            <div className="fixed bottom-0 left-6 w-3xl z-40 flex justify-center " >
-              <BarLoader width={"95%"} color="#06b6d4" cssOverride={{ borderRadius:'9999px',
+            <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-40 flex justify-center  " >
+              <BarLoader width={"90%"} color="#0ea5e9" cssOverride={{ borderRadius:'9999px',
               height: '5px',
             }}  />
             </div>
           )
         }
+        
+        {/* w-3xl */}
         
 
     </header>

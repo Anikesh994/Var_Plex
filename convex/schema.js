@@ -25,4 +25,50 @@ export default defineSchema({
     .index("by_email", ["email"]) // Email lookups
     .searchIndex("search_name", { searchField: "name" }) // User search
     .searchIndex("search_email", { searchField: "email" }),
-})
+
+
+
+    projects : defineTable({
+        title : v.string(),
+        userId : v.id("users"),  // its a foreign key which belongs to the users table
+
+        // fabric.js canvasState
+        canvasState : v.any(),
+        width : v.number(),
+        height : v.number(),
+
+        // IMAGE PIPELINE TRACKS IMAGE TRANSFORMATION
+
+        originalImage : v.optional(v.string()),
+        currentImage : v.optional(v.string()),
+        thumbnailUrl : v.optional(v.string()),
+
+        // IMAGE KIT TRANSFORMATION STATE
+        
+        activeTransformation : v.optional(v.string()),  // image kit url params 
+        backgroundRemoved : v.optional(v.boolean()),
+
+
+        // ORGANIZATION
+
+        folderId : v.optional(v.id("folders")),
+
+
+        //TIME STAMPS
+
+        createdAt : v.number(),
+        updatedAt : v.number(),
+    }).index("by_user",["userId"])
+    .index("by_user_update",["userId" ,"updatedAt"])
+    .index("by_folder" ,["folderId"]),
+
+
+    folders : defineTable({
+        name : v.string(),
+        userId : v.id("users"),
+        createdAt : v.number(),
+    }).index("by_user",["userId"]),
+});
+
+
+
