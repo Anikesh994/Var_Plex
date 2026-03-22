@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { useStoreUser } from '@/hooks/use-store-user';
 import { BarLoader } from "react-spinners";
 import { Authenticated, Unauthenticated } from 'convex/react';
+import { LayoutDashboard } from "lucide-react";
 
 const Header = () => {
 
@@ -75,6 +76,12 @@ const Header = () => {
               </Unauthenticated>
               {/* Show the user button when the user is signed in */}
               <Authenticated>
+                <Link href="/dashboard">
+                  <Button variant="glass">
+                    <LayoutDashboard className="h-4 w-4" />
+                    <span className="hidden md:flex">Dashboard</span>
+                  </Button>
+                </Link>
                 <UserButton
                 appearance={{
                 elements: {
