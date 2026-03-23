@@ -18,9 +18,9 @@ const App = () => {
     <div className="pt-36">
       <HeroSection />
       <PricingSection/>
-      <section className="py-20 text-center">
+      <section className="py-20  text-center">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl font-bold mb-6">
+          <h2 className="  text-5xl font-bold mb-6">
             Ready to{" "}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Build something people love.
