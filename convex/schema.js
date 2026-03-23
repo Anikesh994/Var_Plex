@@ -60,7 +60,7 @@ export default defineSchema({
         createdAt : v.number(),
         updatedAt : v.number(),
     }).index("by_user",["userId"])
-    .index("by_user_update",["userId" ,"updatedAt"])
+    .index("by_user_updated",["userId" ,"updatedAt"])
     .index("by_folder" ,["folderId"]),
 
 
