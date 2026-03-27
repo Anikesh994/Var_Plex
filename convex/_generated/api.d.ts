@@ -8,7 +8,8 @@
  * @module
  */
 
-import type * as ConvexClientProvider from "../../src/app/ConvexClientProvider.jsx";
+import type * as projects from "../projects.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +18,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  ConvexClientProvider: typeof ConvexClientProvider;
+  projects: typeof projects;
+  users: typeof users;
 }>;
 
 /**
